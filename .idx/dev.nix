@@ -5,6 +5,7 @@
   channel = "stable-24.05"; # or "unstable"
   # Use https://search.nixos.org/packages to find packages
   packages = [
+    pkgs.nodePackages.firebase-tools
     pkgs.jdk21
     pkgs.unzip
     pkgs.nodejs_22
@@ -27,14 +28,14 @@
   idx = {
     # Search for the extensions you want on https://open-vsx.org/ and use "publisher.id"
     extensions = [
-      "Dart-Code.flutter"
-      "Dart-Code.dart-code"
+      "dart-code.dart-code"
+      "dart-code.flutter"
       "hashicorp.terraform"
     ];
     workspace = {
       # Runs when a workspace is first created with this `dev.nix` file
       onCreate = { 
-        npm-install = "flutter pub get";
+        installDependencies = "flutter pub get";
         default.openFiles = [
           "README.md"
           "lib/main.dart"
